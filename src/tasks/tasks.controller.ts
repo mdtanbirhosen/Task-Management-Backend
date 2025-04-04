@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
+import { Task } from './task.entity';
 
 @Controller('tasks')
 export class TasksController {
@@ -10,6 +11,11 @@ export class TasksController {
   // getAllTasks(): Task[] {
   //   return this.taskService.getAllTasks();
   // }
+
+  @Get(':id')
+  getTaskById(@Param('id') id:string): Promise<Task>{
+    return this.taskService.getTaskById(id);
+  }
 
   // @Get(':id')
   // getTaskById(@Param('id') id:string):Task {
